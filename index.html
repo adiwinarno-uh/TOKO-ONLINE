@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17324D">
+  <title>TOKO ATHAFARIZ RADEYA FADHIL | Kebutuhan harian, lengkap dalam satu toko</title>
+  <meta name="description" content="Belanja sembako, makanan dan minuman, perlengkapan kebersihan, alat tulis, dan peralatan rumah. Pesan lewat WhatsApp.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="lewati" href="#produk">Lewati ke daftar barang</a>
+
+  <header class="kepala">
+    <div class="wadah kepala-isi">
+      <a class="merek" href="#atas">
+        <span class="merek-tanda" aria-hidden="true">🏪</span>
+        <span data-nama>Toko Maju Jaya</span>
+      </a>
+
+      <div class="cari" role="search">
+        <label class="sr" for="cari">Cari barang</label>
+        <input id="cari" type="search" placeholder="Cari barang, misalnya beras" autocomplete="off">
+      </div>
+
+      <button class="btn-keranjang" id="btn-keranjang" type="button"
+              aria-haspopup="dialog" aria-controls="laci" aria-expanded="false"
+              aria-label="Buka keranjang, 0 barang">
+        <span aria-hidden="true">🛒</span>
+        <span>Keranjang</span>
+        <span class="badge" id="badge" aria-hidden="true">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="atas">
+    <section class="hero">
+      <div class="wadah hero-isi">
+        <div class="hero-teks">
+          <h1>Kebutuhan harian, lengkap dalam satu toko.</h1>
+          <p>Pilih barang, masukkan ke keranjang, lalu kirim pesanan lewat WhatsApp. Kami siapkan pesanannya.</p>
+          <div class="hero-aksi">
+            <a class="btn btn-kuning" href="#produk">Belanja sekarang</a>
+            <a class="btn btn-garis" id="hero-wa" href="#" target="_blank" rel="noopener">Chat WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="rak" aria-hidden="true">
+          <span class="kat-sembako">🍚</span>
+          <span class="kat-kebersihan">🧴</span>
+          <span class="kat-alat-tulis">📒</span>
+          <span class="kat-makanan">☕</span>
+          <span class="kat-rumah">💡</span>
+          <span class="kat-sembako">🥚</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="wadah etalase" id="produk" aria-labelledby="judul-daftar">
+      <div class="etalase-kepala">
+        <div>
+          <h2 id="judul-daftar">Semua barang</h2>
+          <p class="jumlah" id="jumlah" aria-live="polite"></p>
+        </div>
+        <div class="urut">
+          <label for="urut">Urutkan</label>
+          <select id="urut">
+            <option value="nama">Nama A sampai Z</option>
+            <option value="murah">Harga terendah</option>
+            <option value="mahal">Harga tertinggi</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="chip-baris" id="chip-baris" role="group" aria-label="Kategori barang"></div>
+
+      <div class="grid" id="grid"></div>
+
+      <div class="kosong" id="kosong" hidden>
+        <p class="kosong-judul">Barang tidak ditemukan</p>
+        <p>Coba kata kunci lain, atau tampilkan semua kategori.</p>
+        <button class="btn btn-navy" id="reset" type="button">Tampilkan semua barang</button>
+      </div>
+
+      <noscript><p>Aktifkan JavaScript di browser Anda untuk melihat daftar barang.</p></noscript>
+    </section>
+  </main>
+
+  <footer class="kaki-situs">
+    <div class="wadah">
+      <div class="kaki-grid" id="info-toko"></div>
+      <p class="hak">&copy; <span id="tahun"></span> <span data-nama>Toko Maju Jaya</span>. Harga dapat berubah sewaktu-waktu.</p>
+    </div>
+  </footer>
+
+  <!-- Keranjang -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="laci" id="laci" role="dialog" aria-modal="true" aria-labelledby="laci-judul">
+    <div class="laci-kepala">
+      <h2 id="laci-judul" tabindex="-1">Keranjang belanja</h2>
+      <button class="btn-tutup" id="tutup" type="button" aria-label="Tutup keranjang">&times;</button>
+    </div>
+
+    <div class="laci-isi" id="laci-isi"></div>
+
+    <div class="laci-kaki" id="laci-kaki">
+      <div class="total">
+        <span>Total</span>
+        <strong id="total">Rp 0</strong>
+      </div>
+
+      <label for="in-nama">Nama Anda</label>
+      <input id="in-nama" type="text" autocomplete="name" aria-describedby="galat-nama">
+      <p class="galat" id="galat-nama" role="alert" hidden>Isi nama Anda dulu agar pesanan bisa dicatat.</p>
+
+      <label for="in-alamat">Alamat atau catatan (opsional)</label>
+      <textarea id="in-alamat" rows="2"></textarea>
+
+      <button class="btn btn-wa" id="kirim" type="button">Pesan lewat WhatsApp</button>
+      <p class="catatan">Pesanan dikirim ke WhatsApp toko. Ketersediaan, ongkos kirim, dan pembayaran dikonfirmasi lewat chat.</p>
+      <button class="btn-teks" id="kosongkan" type="button">Kosongkan keranjang</button>
+    </div>
+  </aside>
+
+  <div class="sr" id="pengumuman" aria-live="polite"></div>
+
+  <script src="produk.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
